@@ -3,7 +3,6 @@
   "description": "SuperSend TX transactional email API client for PHP",
   "type": "library",
   "license": "MIT",
-  "version": "0.8.2",
   "keywords": ["email", "transactional", "supersend", "supersendtx"],
   "authors": [
     {

@@ -3,7 +3,6 @@
   "description": "Laravel integration for the SuperSend TX transactional email API",
   "type": "library",
   "license": "MIT",
-  "version": "0.8.2",
   "keywords": [
     "laravel",
     "email",
