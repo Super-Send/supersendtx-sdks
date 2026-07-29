@@ -1,0 +1,4 @@
+/spec/reports/
+/.bundle/
+/Gemfile.lock
+*.gem
