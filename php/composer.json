@@ -14,7 +14,7 @@
   "support": {
     "docs": "https://docs.supersendtx.com/sdks/php",
     "issues": "https://github.com/Super-Send/supersendtx-sdks/issues",
-    "source": "https://github.com/Super-Send/supersendtx-sdks"
+    "source": "https://github.com/Super-Send/supersendtx-php"
   },
   "require": {
     "php": ">=8.1",

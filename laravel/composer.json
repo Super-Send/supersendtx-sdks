@@ -20,7 +20,7 @@
   "support": {
     "docs": "https://docs.supersendtx.com/frameworks/laravel",
     "issues": "https://github.com/Super-Send/supersendtx-sdks/issues",
-    "source": "https://github.com/Super-Send/supersendtx-sdks"
+    "source": "https://github.com/Super-Send/supersendtx-laravel"
   },
   "require": {
     "php": ">=8.1",

@@ -6,8 +6,8 @@ Official thin HTTP clients for the [SuperSend TX](https://supersendtx.com) trans
 |----------|------|---------|
 | Python | [`python/`](./python) | `pip install supersendtx` |
 | Go | [`go/`](./go) | `go get github.com/Super-Send/supersendtx-sdks/go@v0.8.2` |
-| PHP | [`php/`](./php) | `composer require supersendtx/supersendtx` |
-| Laravel | [`laravel/`](./laravel) | `composer require supersendtx/laravel` |
+| PHP | [`php/`](./php) (source mirror) · [Packagist repo](https://github.com/Super-Send/supersendtx-php) | `composer require supersendtx/supersendtx` |
+| Laravel | [`laravel/`](./laravel) (source mirror) · [Packagist repo](https://github.com/Super-Send/supersendtx-laravel) | `composer require supersendtx/laravel` |
 | Ruby | [`ruby/`](./ruby) | `gem install supersendtx` |
 
 Docs: [docs.supersendtx.com](https://docs.supersendtx.com)
