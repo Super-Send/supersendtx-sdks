@@ -45,6 +45,48 @@ final class ClientTest extends TestCase
         self::assertSame('Bearer stx_test_key', $lastRequest['headers']['Authorization'] ?? null);
     }
 
+    public function testEmailsSendIncludesAttachmentsAndIdempotency(): void
+    {
+        $lastRequest = null;
+
+        $client = new Client(
+            'stx_test_key',
+            'https://api.example.com',
+            function (string $method, string $path, ?array $body, array $headers) use (&$lastRequest): array {
+                $lastRequest = compact('method', 'path', 'body', 'headers');
+
+                return ['id' => 'msg_2', 'status' => 'queued'];
+            },
+        );
+
+        $client->emails->send([
+            'from' => 'a@example.com',
+            'to' => 'b@example.com',
+            'subject' => 'Hi',
+            'html' => '<p>Hi</p>',
+            'attachments' => [
+                [
+                    'filename' => 'note.txt',
+                    'content_type' => 'text/plain',
+                    'content' => base64_encode('hello'),
+                ],
+            ],
+            'idempotency_key' => 'idem-1',
+        ]);
+
+        self::assertSame('idem-1', $lastRequest['headers']['Idempotency-Key'] ?? null);
+        self::assertSame(
+            [
+                [
+                    'filename' => 'note.txt',
+                    'content_type' => 'text/plain',
+                    'content' => base64_encode('hello'),
+                ],
+            ],
+            $lastRequest['body']['attachments'] ?? null,
+        );
+    }
+
     public function testHttpErrorRaisesSuperSendTxError(): void
     {
         $client = new Client(

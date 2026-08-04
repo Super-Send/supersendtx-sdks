@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "supersendtx"
-version = "0.8.2"
+version = "0.8.3"
 description = "SuperSend TX transactional email API client for Python"
 readme = "README.md"
 license = "MIT"
@@ -33,7 +33,8 @@ Issues = "https://github.com/Super-Send/supersendtx-sdks/issues"
 packages = ["supersendtx"]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0"]
+django = ["django>=4.2"]
+dev = ["pytest>=8.0", "django>=4.2"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

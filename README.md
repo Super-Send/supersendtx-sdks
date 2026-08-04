@@ -7,6 +7,7 @@ Official thin HTTP clients for the [SuperSend TX](https://supersendtx.com) trans
 | Python | [`python/`](./python) | `pip install supersendtx` |
 | Go | [`go/`](./go) | `go get github.com/Super-Send/supersendtx-sdks/go@v0.8.2` |
 | PHP | [`php/`](./php) (source mirror) · [Packagist repo](https://github.com/Super-Send/supersendtx-php) | `composer require supersendtx/supersendtx` |
+| Symfony Mailer | [`symfony-mailer/`](./symfony-mailer) (source mirror) · [Packagist repo](https://github.com/Super-Send/supersendtx-symfony-mailer) | `composer require supersendtx/symfony-mailer` |
 | Laravel | [`laravel/`](./laravel) (source mirror) · [Packagist repo](https://github.com/Super-Send/supersendtx-laravel) | `composer require supersendtx/laravel` |
 | Ruby | [`ruby/`](./ruby) | `gem install supersendtx` |
 

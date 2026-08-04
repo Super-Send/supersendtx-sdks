@@ -21,4 +21,15 @@ result = tx.emails.send(
 print(result["id"], result["status"])
 ```
 
+## Django
+
+```bash
+pip install 'supersendtx[django]'
+```
+
+```python
+EMAIL_BACKEND = "supersendtx.django.EmailBackend"
+# SUPERSENDTX_API_KEY in the environment
+```
+
 Docs: https://docs.supersendtx.com/sdks/python

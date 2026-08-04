@@ -28,4 +28,8 @@ Gem::Specification.new do |spec|
   end
 
   spec.require_paths = ["lib"]
+
+  spec.add_dependency "base64", ">= 0.2"
+  spec.add_development_dependency "mail", ">= 2.8"
+  spec.add_development_dependency "minitest", "~> 5.25"
 end

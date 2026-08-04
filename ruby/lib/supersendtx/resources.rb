@@ -19,7 +19,9 @@ module SuperSendTX
       params["to"] = to if to
       body = serialize_send_params(params)
       headers = {}
-      idempotency_key = params["idempotency_key"] || params["idempotencyKey"]
+      idempotency_key =
+        params["idempotency_key"] || params[:idempotency_key] ||
+        params["idempotencyKey"] || params[:idempotencyKey]
       headers["Idempotency-Key"] = idempotency_key.to_s if idempotency_key
 
       @http.request("POST", "/emails", body: body, headers: headers)
@@ -54,7 +56,7 @@ module SuperSendTX
         "to" => params["to"] || params[:to]
       }
 
-      %w[subject html text reply_to replyTo cc bcc tags headers tag template].each do |key|
+      %w[subject html text reply_to replyTo cc bcc tags headers tag template attachments].each do |key|
         value = params[key] || params[key.to_sym]
         next if value.nil?
 

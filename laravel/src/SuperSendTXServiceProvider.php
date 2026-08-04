@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SuperSendTX\Laravel;
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\ServiceProvider;
 use SuperSendTX\Client;
+use SuperSendTX\Symfony\Transport\SuperSendTXTransport;
 
 class SuperSendTXServiceProvider extends ServiceProvider
 {
@@ -31,5 +33,15 @@ class SuperSendTXServiceProvider extends ServiceProvider
                 __DIR__.'/../config/supersendtx.php' => config_path('supersendtx.php'),
             ], 'supersendtx-config');
         }
+
+        if (!$this->app->bound('mail.manager')) {
+            return;
+        }
+
+        Mail::extend('supersendtx', function () {
+            return new SuperSendTXTransport(
+                $this->app->make(SuperSendTXManager::class)->client(),
+            );
+        });
     }
 }

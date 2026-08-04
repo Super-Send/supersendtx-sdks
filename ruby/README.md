@@ -21,4 +21,13 @@ result = tx.emails.send(
 puts result["id"], result["status"]
 ```
 
+## Rails ActionMailer
+
+```ruby
+config.action_mailer.delivery_method = :supersendtx
+config.action_mailer.supersendtx_settings = {
+  api_key: ENV.fetch("SUPERSENDTX_API_KEY")
+}
+```
+
 Docs: https://docs.supersendtx.com/sdks/ruby

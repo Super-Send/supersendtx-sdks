@@ -182,7 +182,20 @@ def _serialize_send_params(params: dict[str, Any]) -> dict[str, Any]:
         "from": params["from"],
         "to": params["to"],
     }
-    for key in ("subject", "html", "text", "reply_to", "replyTo", "cc", "bcc", "tags", "headers", "tag", "template"):
+    for key in (
+        "subject",
+        "html",
+        "text",
+        "reply_to",
+        "replyTo",
+        "cc",
+        "bcc",
+        "tags",
+        "headers",
+        "tag",
+        "template",
+        "attachments",
+    ):
         if key in params and params[key] is not None:
             mapped = "reply_to" if key == "replyTo" else key
             body[mapped] = params[key]

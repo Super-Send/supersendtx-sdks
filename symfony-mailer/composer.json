@@ -1,14 +1,17 @@
 {
-  "name": "supersendtx/laravel",
-  "description": "Laravel integration for the SuperSend TX transactional email API",
+  "name": "supersendtx/symfony-mailer",
+  "description": "Symfony Mailer transport for the SuperSend TX transactional email API",
+  "version": "0.8.3",
   "type": "library",
   "license": "MIT",
   "keywords": [
-    "laravel",
+    "symfony",
+    "symfony-mailer",
     "email",
     "transactional",
     "supersend",
-    "supersendtx"
+    "supersendtx",
+    "mailer"
   ],
   "authors": [
     {
@@ -17,16 +20,13 @@
   ],
   "homepage": "https://supersendtx.com",
   "support": {
-    "docs": "https://docs.supersendtx.com/frameworks/laravel",
+    "docs": "https://docs.supersendtx.com/frameworks/symfony",
     "issues": "https://github.com/Super-Send/supersendtx-sdks/issues",
-    "source": "https://github.com/Super-Send/supersendtx-laravel"
+    "source": "https://github.com/Super-Send/supersendtx-symfony-mailer"
   },
   "require": {
     "php": ">=8.1",
-    "illuminate/mail": "^10.0|^11.0|^12.0",
-    "illuminate/support": "^10.0|^11.0|^12.0",
     "supersendtx/supersendtx": "^0.8.2",
-    "supersendtx/symfony-mailer": "^0.8.2",
     "symfony/mailer": "^6.2|^7.0",
     "symfony/mime": "^6.2|^7.0"
   },
@@ -41,22 +41,12 @@
   },
   "autoload": {
     "psr-4": {
-      "SuperSendTX\\Laravel\\": "src/"
+      "SuperSendTX\\Symfony\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "SuperSendTX\\Laravel\\Tests\\": "tests/"
-    }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "SuperSendTX\\Laravel\\SuperSendTXServiceProvider"
-      ],
-      "aliases": {
-        "SuperSendTX": "SuperSendTX\\Laravel\\Facades\\SuperSendTX"
-      }
+      "SuperSendTX\\Symfony\\Tests\\": "tests/"
     }
   },
   "scripts": {

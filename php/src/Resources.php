@@ -104,7 +104,7 @@ final class EmailsResource
             'to' => $params['to'],
         ];
 
-        foreach (['subject', 'html', 'text', 'reply_to', 'replyTo', 'cc', 'bcc', 'tags', 'headers', 'tag', 'template'] as $key) {
+        foreach (['subject', 'html', 'text', 'reply_to', 'replyTo', 'cc', 'bcc', 'tags', 'headers', 'tag', 'template', 'attachments'] as $key) {
             if (!array_key_exists($key, $params) || $params[$key] === null) {
                 continue;
             }
