@@ -15,8 +15,12 @@ def client() -> SuperSendTX:
 
 
 def test_requires_stx_prefix() -> None:
-    with pytest.raises(ValueError, match="stx_"):
+    with pytest.raises(ValueError, match="stx_ or rnl_"):
         SuperSendTX("bad")
+
+
+def test_accepts_rnl_prefix() -> None:
+    SuperSendTX("rnl_test_key", base_url="https://api.example.com")
 
 
 def test_emails_send(client: SuperSendTX) -> None:

@@ -15,6 +15,16 @@ func TestNewRequiresStxPrefix(t *testing.T) {
 	}
 }
 
+func TestNewAcceptsRnlPrefix(t *testing.T) {
+	client, err := supersendtx.New("rnl_test")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if client.APIKey != "rnl_test" {
+		t.Fatalf("unexpected api key: %q", client.APIKey)
+	}
+}
+
 func TestEmailsSend(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/emails" || r.Method != http.MethodPost {

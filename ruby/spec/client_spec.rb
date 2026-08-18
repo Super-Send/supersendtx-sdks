@@ -6,7 +6,16 @@ require "supersendtx"
 class ClientTest < Minitest::Test
   def test_requires_stx_prefix
     error = assert_raises(ArgumentError) { SuperSendTX::Client.new("bad") }
-    assert_match(/stx_/, error.message)
+    assert_match(/stx_ or rnl_/, error.message)
+  end
+
+  def test_accepts_rnl_prefix
+    client = SuperSendTX::Client.new(
+      "rnl_test_key",
+      base_url: "https://api.example.com",
+      transport: lambda { |_method, _path, _body, _headers| { "ok" => true } }
+    )
+    assert_instance_of SuperSendTX::Client, client
   end
 
   def test_emails_send

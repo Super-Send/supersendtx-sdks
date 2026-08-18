@@ -29,8 +29,8 @@ func New(apiKey string) (*Client, error) {
 }
 
 func NewClient(apiKey, baseURL string, httpClient *http.Client) (*Client, error) {
-	if !strings.HasPrefix(apiKey, "stx_") {
-		return nil, fmt.Errorf("SuperSend TX API key must start with stx_")
+	if !strings.HasPrefix(apiKey, "stx_") && !strings.HasPrefix(apiKey, "rnl_") {
+		return nil, fmt.Errorf("SuperSend TX API key must start with stx_ or rnl_")
 	}
 	if httpClient == nil {
 		httpClient = http.DefaultClient

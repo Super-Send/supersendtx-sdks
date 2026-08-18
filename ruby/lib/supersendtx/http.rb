@@ -9,7 +9,7 @@ module SuperSendTX
     DEFAULT_API_BASE_URL = "https://api.supersendtx.com"
 
     def initialize(api_key, base_url: DEFAULT_API_BASE_URL, transport: nil)
-      raise ArgumentError, "SuperSend TX API key must start with stx_" unless api_key.start_with?("stx_")
+      raise ArgumentError, "SuperSend TX API key must start with stx_ or rnl_" unless api_key.start_with?("stx_", "rnl_")
 
       @api_key = api_key
       @base_url = base_url.chomp("/")

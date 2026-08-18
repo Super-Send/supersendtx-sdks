@@ -13,9 +13,20 @@ final class ClientTest extends TestCase
     public function testRequiresStxPrefix(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('stx_');
+        $this->expectExceptionMessage('stx_ or rnl_');
 
         new Client('bad');
+    }
+
+    public function testAcceptsRnlPrefix(): void
+    {
+        $client = new Client(
+            'rnl_test_key',
+            'https://api.example.com',
+            static fn (): array => ['ok' => true],
+        );
+
+        self::assertInstanceOf(Client::class, $client);
     }
 
     public function testEmailsSend(): void

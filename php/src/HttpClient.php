@@ -14,8 +14,8 @@ final class HttpClient
         private readonly string $baseUrl = self::DEFAULT_API_BASE_URL,
         private readonly mixed $transport = null,
     ) {
-        if (!str_starts_with($apiKey, 'stx_')) {
-            throw new \InvalidArgumentException('SuperSend TX API key must start with stx_');
+        if (!str_starts_with($apiKey, 'stx_') && !str_starts_with($apiKey, 'rnl_')) {
+            throw new \InvalidArgumentException('SuperSend TX API key must start with stx_ or rnl_');
         }
     }
 
