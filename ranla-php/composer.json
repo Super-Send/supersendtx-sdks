@@ -1,7 +1,7 @@
 {
   "name": "ranla/ranla",
   "description": "Ranla email API client for PHP",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "type": "library",
   "license": "MIT",
   "keywords": [

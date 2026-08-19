@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ranla"
-version = "0.8.4"
+version = "0.8.5"
 description = "Ranla email API client for Python"
 readme = "README.md"
 license = "MIT"
