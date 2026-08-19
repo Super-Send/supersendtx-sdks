@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ranla"
+version = "0.8.4"
+description = "Ranla email API client for Python"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Ranla" }]
+keywords = ["email", "transactional", "ranla"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = ["supersendtx>=0.8.4,<0.9"]
+
+[project.urls]
+Homepage = "https://ranla.ai"
+Documentation = "https://docs.ranla.ai/sdks/python"
+Repository = "https://github.com/Super-Send/supersendtx-sdks"
+Issues = "https://github.com/Super-Send/supersendtx-sdks/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["ranla"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "supersendtx[dev]"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

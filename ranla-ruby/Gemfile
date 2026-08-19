@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gemspec
+
+# Local monorepo dev — gemspec declares supersendtx for RubyGems consumers.
+gem "supersendtx", path: "../supersendtx-ruby"
+
+group :development, :test do
+  gem "minitest", "~> 5.25"
+end
