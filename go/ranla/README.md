@@ -3,7 +3,7 @@
 Official Go client for the Ranla email API.
 
 ```bash
-go get github.com/Super-Send/supersendtx-sdks/go/ranla@v0.8.4
+go get github.com/Super-Send/supersendtx-sdks/go/ranla@v0.8.5
 ```
 
 ```go

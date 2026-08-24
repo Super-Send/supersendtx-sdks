@@ -31,6 +31,20 @@ from ranla import SuperSendTX
 
 The legacy `supersendtx` package on PyPI remains supported.
 
+## Django email backend
+
+```bash
+pip install 'ranla[django]'
+```
+
+```python
+# settings.py
+EMAIL_BACKEND = "ranla.django.EmailBackend"
+# Uses RANLA_API_KEY from the environment.
+```
+
+`supersendtx.django.EmailBackend` remains supported.
+
 ## License
 
 MIT

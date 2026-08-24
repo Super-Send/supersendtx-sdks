@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ranla"
-version = "0.8.5"
+version = "0.8.6"
 description = "Ranla email API client for Python"
 readme = "README.md"
 license = "MIT"
@@ -33,6 +33,7 @@ Issues = "https://github.com/Super-Send/supersendtx-sdks/issues"
 packages = ["ranla"]
 
 [project.optional-dependencies]
+django = ["supersendtx[django]>=0.8.4,<0.9"]
 dev = ["pytest>=8.0", "supersendtx[dev]"]
 
 [tool.pytest.ini_options]
