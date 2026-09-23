@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 	"strings"
 )
 
@@ -99,16 +100,31 @@ func (c *Client) Request(method, path string, body any, headers map[string]strin
 func queryString(params map[string]any) string {
 	values := url.Values{}
 	for key, value := range params {
-		if value == nil {
-			continue
+		if formatted, ok := queryValue(value); ok {
+			values.Set(key, formatted)
 		}
-		values.Set(key, fmt.Sprint(value))
 	}
 	encoded := values.Encode()
 	if encoded == "" {
 		return ""
 	}
 	return "?" + encoded
+}
+
+// queryValue formats one query parameter; ok is false when it should be left out.
+// A nil *int or *bool stored in a map[string]any is not == nil, and fmt.Sprint would
+// print "<nil>" or the pointer address, so pointers are checked and dereferenced here.
+func queryValue(value any) (string, bool) {
+	if value == nil {
+		return "", false
+	}
+	if rv := reflect.ValueOf(value); rv.Kind() == reflect.Pointer {
+		if rv.IsNil() {
+			return "", false
+		}
+		return queryValue(rv.Elem().Interface())
+	}
+	return fmt.Sprint(value), true
 }
 
 type EmailsService struct{ client *Client }

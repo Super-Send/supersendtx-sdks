@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "supersendtx"
-version = "0.8.5"
+version = "0.8.6"
 description = "SuperSend TX transactional email API client for Python"
 readme = "README.md"
 license = "MIT"

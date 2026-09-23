@@ -43,6 +43,59 @@ def test_emails_send(client: SuperSendTX) -> None:
     assert request.get_header("Authorization") == "Bearer stx_test_key"
 
 
+def _json_response(payload: dict) -> MagicMock:
+    response = MagicMock()
+    response.read.return_value = json.dumps(payload).encode()
+    response.__enter__.return_value = response
+    return response
+
+
+def test_emails_send_forwards_category_and_unsubscribe(client: SuperSendTX) -> None:
+    with patch("urllib.request.urlopen", return_value=_json_response({"id": "msg_1"})) as urlopen:
+        client.emails.send(
+            from_="a@example.com",
+            to="b@example.com",
+            subject="Hi",
+            html="<p>Hi</p>",
+            category="newsletter",
+            unsubscribe=False,
+        )
+
+    body = json.loads(urlopen.call_args.args[0].data)
+    assert body["category"] == "newsletter"
+    assert body["unsubscribe"] is False
+
+
+def test_emails_batch_forwards_category(client: SuperSendTX) -> None:
+    with patch("urllib.request.urlopen", return_value=_json_response({"data": []})) as urlopen:
+        client.emails.batch(
+            [
+                {"from": "a@example.com", "to": "b@example.com", "subject": "News", "html": "<p>1</p>", "category": "newsletter"},
+                {"from": "a@example.com", "to": "c@example.com", "subject": "Receipt", "text": "2"},
+            ]
+        )
+
+    request = urlopen.call_args.args[0]
+    assert request.full_url == "https://api.example.com/emails/batch"
+    emails = json.loads(request.data)["emails"]
+    assert emails[0]["category"] == "newsletter"
+    assert "category" not in emails[1]
+
+
+def test_domains_list_sends_lowercase_booleans(client: SuperSendTX) -> None:
+    with patch("urllib.request.urlopen", return_value=_json_response({"domains": []})) as urlopen:
+        client.domains.list(inbound_enabled=True, limit=10)
+        client.domains.list(inbound_enabled=False)
+        client.domains.list()
+
+    urls = [call.args[0].full_url for call in urlopen.call_args_list]
+    assert urls == [
+        "https://api.example.com/domains?limit=10&inbound_enabled=true",
+        "https://api.example.com/domains?inbound_enabled=false",
+        "https://api.example.com/domains",
+    ]
+
+
 def test_http_error_raises_super_send_tx_error(client: SuperSendTX) -> None:
     import urllib.error
 

@@ -50,7 +50,14 @@ class HttpClient:
 
     @staticmethod
     def query(params: dict[str, Any]) -> str:
-        filtered = {key: value for key, value in params.items() if value is not None}
+        filtered = {key: _query_value(value) for key, value in params.items() if value is not None}
         if not filtered:
             return ""
         return "?" + urllib.parse.urlencode(filtered)
+
+
+def _query_value(value: Any) -> Any:
+    # urlencode would send str(True) == "True"; the API only accepts true/false (or 1/0).
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    return value

@@ -43,6 +43,65 @@ class ClientTest < Minitest::Test
     assert_equal "Bearer stx_test_key", last_request[:headers]["Authorization"]
   end
 
+  def test_emails_send_forwards_category_and_unsubscribe
+    last_body = nil
+
+    client = SuperSendTX::Client.new(
+      "stx_test_key",
+      base_url: "https://api.example.com",
+      transport: lambda do |_method, _path, body, _headers|
+        last_body = body
+        { "id" => "msg_1", "status" => "sent" }
+      end
+    )
+
+    client.emails.send(
+      from: "a@example.com",
+      to: "b@example.com",
+      subject: "Hi",
+      html: "<p>Hi</p>",
+      category: "newsletter",
+      unsubscribe: false
+    )
+
+    assert_equal "newsletter", last_body["category"]
+    assert_equal false, last_body["unsubscribe"]
+  end
+
+  def test_emails_batch_forwards_category_and_string_keyed_unsubscribe
+    last_request = nil
+
+    client = SuperSendTX::Client.new(
+      "stx_test_key",
+      base_url: "https://api.example.com",
+      transport: lambda do |method, path, body, _headers|
+        last_request = { method: method, path: path, body: body }
+        { "data" => [] }
+      end
+    )
+
+    client.emails.batch(
+      [
+        {
+          "from" => "a@example.com",
+          "to" => "b@example.com",
+          "subject" => "News",
+          "html" => "<p>1</p>",
+          "category" => "product",
+          "unsubscribe" => false
+        },
+        { from: "a@example.com", to: "c@example.com", subject: "Receipt", text: "2" }
+      ]
+    )
+
+    assert_equal "/emails/batch", last_request[:path]
+    first, second = last_request[:body]["emails"]
+    assert_equal "product", first["category"]
+    assert_equal false, first["unsubscribe"]
+    refute second.key?("category")
+    refute second.key?("unsubscribe")
+  end
+
   def test_http_error_raises_super_send_tx_error
     client = SuperSendTX::Client.new(
       "stx_test_key",

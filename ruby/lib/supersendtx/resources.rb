@@ -56,7 +56,7 @@ module SuperSendTX
         "to" => params["to"] || params[:to]
       }
 
-      %w[subject html text reply_to replyTo cc bcc tags headers tag template attachments].each do |key|
+      %w[subject html text reply_to replyTo cc bcc tags headers tag template attachments category].each do |key|
         value = params[key] || params[key.to_sym]
         next if value.nil?
 
@@ -68,7 +68,9 @@ module SuperSendTX
       body["text"] = params["textBody"] || params[:textBody] if params["textBody"] || params[:textBody]
       body["scheduled_at"] = params["scheduled_at"] || params[:scheduled_at] if params["scheduled_at"] || params[:scheduled_at]
       body["scheduled_at"] ||= params["scheduledAt"] || params[:scheduledAt]
-      body["unsubscribe"] = params["unsubscribe"] || params[:unsubscribe] if params.key?("unsubscribe") || params.key?(:unsubscribe)
+      # fetch, not ||: `"unsubscribe" => false` must stay false. A nil would go out as null, which the API rejects.
+      unsubscribe = params.fetch("unsubscribe") { params[:unsubscribe] }
+      body["unsubscribe"] = unsubscribe unless unsubscribe.nil?
 
       body
     end

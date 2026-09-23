@@ -98,6 +98,57 @@ final class ClientTest extends TestCase
         );
     }
 
+    public function testEmailsSendForwardsCategoryAndUnsubscribe(): void
+    {
+        $lastRequest = null;
+
+        $client = new Client(
+            'stx_test_key',
+            'https://api.example.com',
+            function (string $method, string $path, ?array $body, array $headers) use (&$lastRequest): array {
+                $lastRequest = compact('method', 'path', 'body', 'headers');
+
+                return ['id' => 'msg_3', 'status' => 'queued'];
+            },
+        );
+
+        $client->emails->send([
+            'from' => 'a@example.com',
+            'to' => 'b@example.com',
+            'subject' => 'Hi',
+            'html' => '<p>Hi</p>',
+            'category' => 'newsletter',
+            'unsubscribe' => false,
+        ]);
+
+        self::assertSame('newsletter', $lastRequest['body']['category'] ?? null);
+        self::assertFalse($lastRequest['body']['unsubscribe'] ?? null);
+    }
+
+    public function testEmailsBatchForwardsCategory(): void
+    {
+        $lastRequest = null;
+
+        $client = new Client(
+            'stx_test_key',
+            'https://api.example.com',
+            function (string $method, string $path, ?array $body, array $headers) use (&$lastRequest): array {
+                $lastRequest = compact('method', 'path', 'body', 'headers');
+
+                return ['data' => []];
+            },
+        );
+
+        $client->emails->batch([
+            ['from' => 'a@example.com', 'to' => 'b@example.com', 'subject' => 'News', 'html' => '<p>1</p>', 'category' => 'product'],
+            ['from' => 'a@example.com', 'to' => 'c@example.com', 'subject' => 'Receipt', 'text' => '2'],
+        ]);
+
+        self::assertSame('/emails/batch', $lastRequest['path']);
+        self::assertSame('product', $lastRequest['body']['emails'][0]['category'] ?? null);
+        self::assertArrayNotHasKey('category', $lastRequest['body']['emails'][1]);
+    }
+
     public function testHttpErrorRaisesSuperSendTxError(): void
     {
         $client = new Client(
