@@ -10,14 +10,14 @@ Gem::Specification.new do |spec|
 
   spec.summary = "SuperSend TX transactional email API client for Ruby"
   spec.description = "Official Ruby client for the SuperSend TX REST API."
-  spec.homepage = "https://supersendtx.com"
+  spec.homepage = "https://ranla.ai"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.1.0"
 
   spec.metadata = {
     "homepage_uri" => spec.homepage,
     "source_code_uri" => "https://github.com/Super-Send/supersendtx-sdks/tree/main/ruby",
-    "documentation_uri" => "https://docs.supersendtx.com/sdks/ruby",
+    "documentation_uri" => "https://docs.ranla.ai/sdks/ruby",
     "rubygems_mfa_required" => "true"
   }
 

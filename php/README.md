@@ -1,6 +1,6 @@
 # SuperSend TX PHP SDK
 
-Official PHP client for the [SuperSend TX](https://supersendtx.com) transactional email API.
+Official PHP client for the [SuperSend TX](https://ranla.ai) transactional email API.
 
 ```bash
 composer require supersendtx/supersendtx
@@ -23,4 +23,4 @@ $result = $tx->emails->send([
 echo $result['id'], ' ', $result['status'], PHP_EOL;
 ```
 
-Docs: https://docs.supersendtx.com/sdks/php
+Docs: https://docs.ranla.ai/sdks/php

@@ -15,9 +15,9 @@
       "name": "SuperSend TX"
     }
   ],
-  "homepage": "https://supersendtx.com",
+  "homepage": "https://ranla.ai",
   "support": {
-    "docs": "https://docs.supersendtx.com/frameworks/laravel",
+    "docs": "https://docs.ranla.ai/frameworks/laravel",
     "issues": "https://github.com/Super-Send/supersendtx-sdks/issues",
     "source": "https://github.com/Super-Send/supersendtx-laravel"
   },

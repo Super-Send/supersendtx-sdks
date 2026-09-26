@@ -1,6 +1,6 @@
 # SuperSend TX Laravel package
 
-Laravel Mail transport and integration for the [SuperSend TX](https://supersendtx.com) transactional email API.
+Laravel Mail transport and integration for the [SuperSend TX](https://ranla.ai) transactional email API.
 
 ```bash
 composer require supersendtx/laravel
@@ -40,4 +40,4 @@ SuperSendTX::client()->emails->send([
 ]);
 ```
 
-Docs: https://docs.supersendtx.com/frameworks/laravel
+Docs: https://docs.ranla.ai/frameworks/laravel

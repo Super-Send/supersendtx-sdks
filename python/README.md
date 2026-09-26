@@ -1,6 +1,6 @@
 # SuperSend TX Python SDK
 
-Official Python client for the [SuperSend TX](https://supersendtx.com) transactional email API.
+Official Python client for the [SuperSend TX](https://ranla.ai) transactional email API.
 
 ```bash
 pip install supersendtx
@@ -32,4 +32,4 @@ EMAIL_BACKEND = "supersendtx.django.EmailBackend"
 # SUPERSENDTX_API_KEY in the environment
 ```
 
-Docs: https://docs.supersendtx.com/sdks/python
+Docs: https://docs.ranla.ai/sdks/python

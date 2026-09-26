@@ -1,6 +1,6 @@
 # SuperSend TX Go SDK
 
-Official Go client for the [SuperSend TX](https://supersendtx.com) transactional email API.
+Official Go client for the [SuperSend TX](https://ranla.ai) transactional email API.
 
 ```bash
 go get github.com/Super-Send/supersendtx-sdks/go@v0.8.2
@@ -36,4 +36,4 @@ func main() {
 }
 ```
 
-Docs: https://docs.supersendtx.com/sdks/go
+Docs: https://docs.ranla.ai/sdks/go

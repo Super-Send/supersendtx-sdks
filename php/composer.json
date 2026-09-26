@@ -1,7 +1,7 @@
 {
   "name": "supersendtx/supersendtx",
   "description": "SuperSend TX transactional email API client for PHP",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "type": "library",
   "license": "MIT",
   "keywords": ["email", "transactional", "supersend", "supersendtx"],
@@ -10,9 +10,9 @@
       "name": "SuperSend TX"
     }
   ],
-  "homepage": "https://supersendtx.com",
+  "homepage": "https://ranla.ai",
   "support": {
-    "docs": "https://docs.supersendtx.com/sdks/php",
+    "docs": "https://docs.ranla.ai/sdks/php",
     "issues": "https://github.com/Super-Send/supersendtx-sdks/issues",
     "source": "https://github.com/Super-Send/supersendtx-php"
   },

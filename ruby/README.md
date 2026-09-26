@@ -1,6 +1,6 @@
 # SuperSend TX Ruby SDK
 
-Official Ruby client for the [SuperSend TX](https://supersendtx.com) transactional email API.
+Official Ruby client for the [SuperSend TX](https://ranla.ai) transactional email API.
 
 ```bash
 gem install supersendtx
@@ -30,4 +30,4 @@ config.action_mailer.supersendtx_settings = {
 }
 ```
 
-Docs: https://docs.supersendtx.com/sdks/ruby
+Docs: https://docs.ranla.ai/sdks/ruby

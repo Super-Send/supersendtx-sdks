@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "supersendtx"
-version = "0.8.6"
+version = "0.8.7"
 description = "SuperSend TX transactional email API client for Python"
 readme = "README.md"
 license = "MIT"
@@ -24,8 +24,8 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://supersendtx.com"
-Documentation = "https://docs.supersendtx.com/sdks/python"
+Homepage = "https://ranla.ai"
+Documentation = "https://docs.ranla.ai/sdks/python"
 Repository = "https://github.com/Super-Send/supersendtx-sdks"
 Issues = "https://github.com/Super-Send/supersendtx-sdks/issues"
 
